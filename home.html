@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DubFlix - Home</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="home-container">
+    <!-- Header -->
+    <header class="header">
+      <img src="logo.png" alt="DubFlix Logo" style="height: 48px; display: block;" />
+      <nav class="nav-menu">
+        <a href="#" class="nav-item" onclick="showHome()">Início</a>
+        <a href="#" class="nav-item" onclick="showSearch()">Buscar</a>
+        <a href="#" class="nav-item" onclick="showFavorites()">Favoritos</a>
+        <a href="#" class="nav-item" onclick="logout()">Sair</a>
+      </nav>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <h1 class="hero-title">Bem-vindo ao DubFlix</h1>
+        <p class="hero-description">Os melhores filmes e séries dublados em português, sempre ao seu alcance.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn-primary" onclick="playFeatured()">Assistir</a>
+          <a href="#" class="btn-secondary" onclick="showMovieDetails('featured')">Mais Informações</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categorias -->
+    <section class="categories-section">
+      <h2 class="category-title">Lançamentos</h2>
+      <div class="movies-carousel" id="lancamentos">
+        <div class="loading">
+          <div class="spinner"></div>
+          Carregando...
+        </div>
+      </div>
+    </section>
+
+    <section class="categories-section">
+      <h2 class="category-title">Ação</h2>
+      <div class="movies-carousel" id="acao">
+        <div class="loading">
+          <div class="spinner"></div>
+          Carregando...
+        </div>
+      </div>
+    </section>
+
+    <section class="categories-section">
+      <h2 class="category-title">Comédia</h2>
+      <div class="movies-carousel" id="comedia">
+        <div class="loading">
+          <div class="spinner"></div>
+          Carregando...
+        </div>
+      </div>
+    </section>
+
+    <section class="categories-section">
+      <h2 class="category-title">Séries</h2>
+      <div class="movies-carousel" id="series">
+        <div class="loading">
+          <div class="spinner"></div>
+          Carregando...
+        </div>
+      </div>
+    </section>
+
+    <section class="categories-section">
+      <h2 class="category-title">Animações</h2>
+      <div class="movies-carousel" id="animacoes">
+        <div class="loading">
+          <div class="spinner"></div>
+          Carregando...
+        </div>
+      </div>
+    </section>
+
+    <section class="categories-section">
+      <h2 class="category-title">Drama</h2>
+      <div class="movies-carousel" id="drama">
+        <div class="loading">
+          <div class="spinner"></div>
+          Carregando...
+        </div>
+      </div>
+    </section>
+
+    <!-- Meus Filmes -->
+    <section class="categories-section" id="my-movies-section" style="display: none;">
+      <h2 class="category-title">Meus Filmes</h2>
+      <div class="movies-carousel" id="meus-filmes">
+        <!-- Filmes personalizados serão inseridos aqui -->
+      </div>
+    </section>
+  </div>
+
+  <!-- Tela de Busca -->
+  <div class="search-container" id="searchScreen" style="display: none;">
+    <input type="text" class="search-input" id="searchInput" placeholder="Buscar filmes e séries..." onkeyup="performSearch(this.value)">
+    <div class="search-results" id="searchResults"></div>
+  </div>
+
+  <!-- Detalhes do Filme -->
+  <div class="movie-details" id="movieDetails">
+    <div class="details-content">
+      <div class="details-poster">
+        <img id="detailPoster" src="" alt="Poster">
+      </div>
+      <div class="details-info">
+        <h1 id="detailTitle"></h1>
+        <div class="details-meta">
+          <span id="detailYear"></span>
+          <span id="detailDuration"></span>
+          <span id="detailRating"></span>
+        </div>
+        <p id="detailDescription"></p>
+        <div class="details-buttons">
+          <button class="btn-primary" onclick="playMovie()">Assistir</button>
+          <button class="btn-secondary" onclick="toggleFavorite()" id="favoriteBtn">Adicionar aos Favoritos</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Player de Vídeo -->
+  <div class="video-player" id="videoPlayer">
+    <video id="videoElement" width="100%" height="100%" controls>
+      Seu navegador não suporta o elemento de vídeo.
+    </video>
+    <div class="video-controls">
+      <button class="control-btn" onclick="togglePlay()">▶</button>
+      <button class="control-btn" onclick="skipBackward()">⏪</button>
+      <button class="control-btn" onclick="skipForward()">⏩</button>
+      <button class="control-btn" onclick="showQualityMenu()" id="qualityBtn" style="display: none;">⚙</button>
+      <button class="control-btn" onclick="closePlayer()">✕</button>
+    </div>
+  </div>
+
+  <!-- App Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="meus-filmes.js"></script>
+  <script src="hls-override.js"></script>
+  <script src="tmdb-api.js"></script>
+  <script src="mock-data.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>
